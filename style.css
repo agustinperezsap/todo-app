@@ -1,0 +1,234 @@
+/* VARIABLES DE COLOR Y FUENTE  */
+
+:root {
+    --color-fondo: #fffaf4;
+    --coloer-principal: #ff6b6b;
+    --color-secundario: #ffa502;
+    --color-texto: #333;
+    --color-encabezado:#2c3e50;
+}
+/* ============================= */
+/* RESPONSIVE DESIGN 📱          */
+/* ============================= */
+
+/* 🔹 Ajustes para tablets (pantallas medianas) */
+@media (max-width: 992px) {
+  main {
+    max-width: 700px;
+  }
+
+  nav ul {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .contenedor-proyectos {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tarjeta-proyecto {
+    width: 80%;
+  }
+}
+
+/* 🔹 Ajustes para celulares (pantallas pequeñas) */
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+
+  main {
+    margin: 10px;
+    padding: 10px;
+  }
+
+  .foto-perfil {
+    max-width: 180px;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
+
+  .tarjeta-proyecto {
+    width: 100%;
+    padding: 15px;
+  }
+
+  form {
+    padding: 10px;
+  }
+
+  button {
+    padding: 8px;
+  }
+}
+
+
+/* Estilos generales */
+
+body {
+    font-family: sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Header y navegacion */
+header {
+    background-color: var(--color-encabezado);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 0;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+nav a:hover {
+    color: var(--color-secundario);
+}
+
+/* Secciones principales */
+main {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+section {
+    margin-bottom: 50px;
+}
+
+h2 {
+    color:var(--coloer-principal);
+    border-bottom: 2px solid var(--coloer-principal);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* Imagen que me gusta */
+.foto-perfil {
+    width: 100%;
+    max-width: 250px;
+    border-radius: 50%;
+    display: block;
+    margin: 20px auto;
+}
+
+.contenedor-proyectos {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.tarjeta-proyecto h3 {
+    color: var(--color-encabezado);
+}
+
+form {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+input, textarea, button {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: var(--coloer-principal);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: var(--color-secundario);
+}
+
+/* Footer */
+footer {
+    background-color: var(--color-encabezado);
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 40px;
+}
+
+
+
+/* ============================= */
+/* TRANSICIONES Y EFECTOS VISUALES */
+/* ============================= */
+
+/* Botones */
+button {
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: var(--color-secundario);
+  transform: scale(1.05);
+}
+
+/* Tarjetas de proyecto */
+.tarjeta-proyecto {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarjeta-proyecto:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+}
+
+/* Enlaces del menú */
+nav a {
+  transition: color 0.3s ease;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
