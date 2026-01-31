@@ -137,6 +137,8 @@ function agregarTarea(){
     });
     
     input.value = "";
+    input.focus();
+    
     guardarTareas();
     render();
 }
@@ -166,6 +168,12 @@ document.getElementById("filtro-pendientes").addEventListener("click", ()=>{
 document.getElementById("filtro-completadas").addEventListener("click", () => {
     filtroActual = "completadas";
     render();
+});
+
+input.addEventListener("keydown", function(e){
+    if(e.key === "Enter"){
+        agregarTarea();
+    }
 });
 
 

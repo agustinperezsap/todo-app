@@ -1,102 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portafolio | Agustin Perez</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    
+    <title>ToDo App - Practica JS</title>
+    <link rel="stylesheet" href="style-todo.css">
 </head>
 <body>
-    <header>
-        <div class="contenedor-header">
-            <h1>Agustin Perez</h1>
-            <nav>
-                <ul>
-                    <li><a href="#inicio">Inicio</a></li>
-                    <li><a href="#sobre-mi">Sobre mi</a></li>
-                    <li><a href="#proyectos">Proyectos</a></li>
-                    <li><a href="contacto">Contacto</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    <main>
-        <section id="inicio" class="seccion-inicio">
-            <img src="/imagenes/foto-289.jpg" alt="fati y almendra" class="foto-perfil"/>
-            <h2>Hola, esta es una foto que me gusta</h2>
-            <p>
-                Soy estudiante de desarrollo web, apasionado por la tecnologia, el diseño y el aprendizaje constante
-                En este espacio comparto mis proyectos, ideas y progresos.
-            </p>
-        </section>
-        <!-- Sccion de Proyectos -->
-         <section id="proyectos">
-            <div class="contenedor-proyectos">
-                <article class="tarjeta-proyecto">
-                    <h3>Mi primera web</h3>
-                    <p>Un sitio personal hecho con HTML y CSS, aplicando conceptos de estructura semantica y estilos actualizados.</p>
-                </article>
-
-                <article class="tarjeta-proyecto">
-                    <h3>To-Do App</h3>
-                    <p>Una aplicacion web para gestionar tareas, construidas con JS.</p>
-                </article>
-            </div>
-         </section>
-         <!-- Seccion Contacto  -->
-          <section id="contacto">
-            <h2>Contacto</h2>
-            <form action="#" method="post" id="formContacto">
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre">
-
-                <label for="email">Correo:</label>
-                <input type="text" id="email" name="email" placeholder="tu@email.com">
-
-                <label for="mensaje">Mensaje:</label>
-                <textarea name="mensaje" id="mensaje" rows="4" placeholder="Tu mensaje.."></textarea>
-
-                <button type="submit">Enviar</button>
-            </form>
-          </section>
-    </main>
-    <hr>
-    <section id="interaccion">
-        <h2>Probando intectividad con JS</h2>
-        <p id="mensaje"> Presiona el boton para saludarme:</p>
-        <button id="boton-saludo">Saludar</button>
-    </section>
-    
-    <hr>
-    <section id="tareas">
-        <h2>Mis tareas</h2>
-        <input type="text" id="nuevaTarea" placeholder="Escribe una tarea: ">
-        <button id="agregarTarea">Agregar</button>
-        <ul id="listaTareas"></ul>    
-    </section>
-    <script src="script.js"></script>
-    <input type="text" id="buscador" placeholder="Escribe algo...">
-    
-    <p id="resultado"></p>
+    <!-- Regla mental
+    “Nunca confíes en lo que ves, confiá en tus datos” -->
     <section id="todoApp">
-        <h2>Lista de tareas</h2>
+        <h2>ToDo App</h2>
 
-        <div class="entrada-tarea">
-            <input type="text" id="inputTarea" placeholder="Escribí una tarea...">
-            <button id="btnAgregar">Agregar</button>
+        <input type="text" id="inputTarea" placeholder="Nueva tarea">
+        <button id="btnAgregar">Agregar</button>
+        <div id="filtros">
+            <button id="filtro-todas">Todas</button>
+            <button id="filtro-pendientes">Pendientes</button>
+            <button id="filtro-completadas">Completadas</button>
+            <button id="btnLimpiar">Limpiar completadas</button>
         </div>
-
-        <ul id="listaTareas"></ul>
+        <p id="contador"></p>
+        <ul id="lista"></ul>
     </section>
 
-
-
-    <!-- Footer -->
-    <footer>
-        <p>© 2025 Agustín Pérez | Desarrollado con HTML y CSS</p>
-    </footer>
-    
+    <script src="script-todo.js" defer></script>
 </body>
 </html>
+<!-- 
+📸 sacás una foto nueva del array
+
+Borrar la foto no borra la realidad.
+
+🔥 Regla mental CLAVE (guardala)
+
+El array es el estado
+El DOM es solo una representación -->
