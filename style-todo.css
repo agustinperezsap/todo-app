@@ -45,4 +45,28 @@ body.dark li {
     background-color: #1a1a1a;
 }
 
+.container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+}
+
+@media (max-width: 600px){
+
+    body {
+        font-size: 16px;
+    }
+
+    button {
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    li {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+}
 
