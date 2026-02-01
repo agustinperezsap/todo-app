@@ -9,6 +9,12 @@ const tareasGuardadas = localStorage.getItem("tareas");
 
 const btnLimpiar = document.getElementById("btnLimpiar");
 
+const btnLimpiarHoy = document.getElementById("btnLimpiarHoy");
+
+const btnExportar = document.getElementById("btnExportar");
+
+
+
 
 
 
@@ -31,6 +37,8 @@ if(tareasGuardadas){
 const input = document.getElementById("inputTarea");
 const boton = document.getElementById("btnAgregar");
 const lista = document.getElementById("lista");
+const listaHoy = document.getElementById("listaHoy");
+
 
 // render
 // Porque:
@@ -53,7 +61,11 @@ function render() {
 
     tareasFiltradas.forEach(function(tarea, index) {
         const li = document.createElement("li");
-        
+
+        setTimeout(() => {
+            li.classList.add("mostrar");
+        }, 10);
+
         const span = document.createElement("span");
         span.textContent = tarea.texto;
 
@@ -63,38 +75,55 @@ function render() {
 
         const btnCheck = document.createElement("button");
         btnCheck.textContent = "✔️";
-        btnCheck.style.marginLeft = "10px";
 
-        btnCheck.addEventListener("click", function(){
-            toggleCompletada(index);
-        });
-
-        const btnEditar = document.createElement("button");
-        btnEditar.textContent = "✏️";
-        btnEditar.style.marginLeft = "10px";
-
-        btnEditar.addEventListener("click", function(){
-            editarTarea(index);
-        })
+        btnCheck.addEventListener("click", () => toggleCompletada(index));
 
         const btnEliminar = document.createElement("button");
         btnEliminar.textContent = "❌";
-        btnEliminar.style.marginLeft = "5px";
 
-        btnEliminar.addEventListener("click", function () {
-            eliminarTarea(index);
-        });
+        btnEliminar.addEventListener("click", () => eliminarTarea(index));
 
         li.appendChild(btnCheck);
         li.appendChild(span);
-        li.appendChild(btnEditar);
         li.appendChild(btnEliminar);
-         
-        lista.appendChild(li);
 
+        lista.appendChild(li);
     });
+
     actualizarContador();
+    renderCompletadasHoy();
 }
+function exportarTareasHoy(){
+    const hoy = new Date().toISOString().slice(0, 10);
+
+    const tareasHoy = tareas.filter(
+        t => t.completada && t.fechaCompletada === hoy
+    );
+
+    if (tareasHoy.length === 0){
+        alert("No hay tareas completadas hoy. ");
+        return;
+    }
+
+    let contenido = "tareas completadas hoy\n\n";
+
+    tareasHoy.forEach(t => {
+        contenido += "✔️" + t.texto + "\n";
+    });
+
+    const blob = new Blob([contenido], { type: "text/plain"});
+
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "tareas-hoy.txt";
+    a.click();
+
+    URL.revokeObjectURL(url);
+
+}
+
 
 function editarTarea(indice){
     const nuevoTexto = prompt(
@@ -111,9 +140,15 @@ function editarTarea(indice){
 }
 
 function eliminarTarea(indice){
-    tareas.splice(indice, 1);
-    guardarTareas();
-    render();
+    const li = lista.children[indice];
+    li.classList.add("eliminar")
+
+    setTimeout(() => {
+        tareas.splice(indice, 1);
+        guardarTareas();
+        render();
+    }, 300);
+    
 }
 
 
@@ -124,6 +159,40 @@ function limpiarCompletadas() {
     guardarTareas();
     render();
 }
+
+function renderCompletadasHoy(){
+    const hoy = new Date().toISOString().slice(0,10);
+
+    const tareasHoy = tareas.filter(
+        t => t.completada && t.fechaCompletada === hoy
+    );
+
+    listaHoy.innerHTML = "";
+
+    tareasHoy.forEach(t =>{
+        const li = document.createElement("li");
+        li.textContent = t.texto;
+        listaHoy.appendChild(li);
+    });
+}
+
+function limpiarCompletadasHoy() {
+    const hoy = new Date().toISOString().slice(0, 10);
+
+    const confirmar = confirm(
+        "¿Estás seguro de borrar las tareas realizadas hoy?"
+    );
+
+    if (!confirmar) return;
+
+    tareas = tareas.filter(
+        t => !(t.completada && t.fechaCompletada === hoy)
+    );
+
+    guardarTareas();
+    render();
+}
+
 
 
 function agregarTarea(){
@@ -138,13 +207,22 @@ function agregarTarea(){
     
     input.value = "";
     input.focus();
-    
+
     guardarTareas();
     render();
 }
 
 function toggleCompletada(indice) {
-    tareas[indice].completada = !tareas[indice].completada;
+    const tarea = tareas[indice];
+
+    tarea.completada = !tarea.completada;
+
+    if (tarea.completada) {
+        tarea.fechaCompletada = new Date().toISOString().slice(0,10);
+    } else{
+        tarea.fechaCompletada = null;
+    }
+
     guardarTareas();
     render();
 }
@@ -153,7 +231,11 @@ function toggleCompletada(indice) {
 
 btnLimpiar.addEventListener("click", limpiarCompletadas);
 
+btnLimpiarHoy.addEventListener("click", limpiarCompletadasHoy);
+
 boton.addEventListener("click", agregarTarea);
+
+btnExportar.addEventListener("click", exportarTareasHoy);
 
 document.getElementById("filtro-todas").addEventListener("click",()=>{
     filtroActual = "todas";

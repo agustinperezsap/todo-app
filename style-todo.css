@@ -1,6 +1,32 @@
 .tarea-completada {
     text-decoration: line-through;
-    color: gray;
-    opacity: 0.7;
+    opacity: 0.6;
+    transition: all 0.3s ease;
 }
+
+li {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+li.mostrar {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+li.eliminar {
+    opacity: 0;
+    transform: translateX(20px);
+}
+
+
+button {
+    transition: transform 0.15s ease;
+}
+
+button:active {
+    transform: scale(0.9);
+}
+
 
