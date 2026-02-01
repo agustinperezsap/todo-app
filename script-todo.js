@@ -68,9 +68,7 @@ function render() {
     tareasFiltradas.forEach(function(tarea, index) {
         const li = document.createElement("li");
 
-        setTimeout(() => {
-            li.classList.add("mostrar");
-        }, 10);
+        setTimeout(() => li.classList.add("mostrar"), 10);
 
         const span = document.createElement("span");
         span.textContent = tarea.texto;
@@ -231,6 +229,13 @@ function toggleCompletada(indice) {
 
     guardarTareas();
     render();
+
+    setTimeout(() => {
+        const li = lista.children[indice];
+        if (li) {
+            li.classList.add("tarea-flahs", "tarea-bounce");
+        }
+    }, 10);
 }
 
 function toggleTema(){

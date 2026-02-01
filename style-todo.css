@@ -48,7 +48,7 @@ body.dark li {
 .container {
     max-width: 600px;
     margin: auto;
-    padding: 20px;
+    padding: 15px;
 }
 
 @media (max-width: 600px){
@@ -69,4 +69,58 @@ body.dark li {
     }
 
 }
+
+input, button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    font-size: 16px;
+}
+
+#filtros { 
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+#filtros button{
+    flex: 1 1 45%;
+}
+
+@keyframes completarFlash {
+    0% {background: #d4ffd4;}
+    100% {background: transparent;}
+}
+
+.tarea-flash {
+    animation: completeflash 0.5s ease; 
+}
+
+@keyframes bounce {
+    0% { transform: scale(1);}
+    50% { transform: scale(1.05);}
+    100% { transform: scale(1);}
+}
+
+.tarea-bounce {
+    animation: bounce 0.25s ease;
+}
+
+li:hover {
+    background-color: rgb(0,0,0,0.5);
+    transform: translate(3px);
+}
+
+body.dark li:hover { 
+    background-color: rgba(255, 255, 2555, 0.08);
+}
+
+button:hover {
+    transform: scale(1.03);
+}
+
+button:active {
+    transform: scale(0.92);
+}
+
 
