@@ -13,8 +13,7 @@ const btnLimpiarHoy = document.getElementById("btnLimpiarHoy");
 
 const btnExportar = document.getElementById("btnExportar");
 
-
-
+const btnTema = document.getElementById("btnTema");
 
 
 
@@ -27,6 +26,13 @@ function actualizarContador(){
 
 if(tareasGuardadas){
     tareas = JSON.parse(tareasGuardadas);
+}
+
+//Guarda el modo Oscuro en localStorage 
+const temaGuardado = localStorage.getItem("temaOscuro");
+
+if (temaGuardado === "true") {
+    document.body.classList.add("dark");
 }
 
 // 📌 JSON.parse:
@@ -227,7 +233,22 @@ function toggleCompletada(indice) {
     render();
 }
 
+function toggleTema(){
+    document.body.classList.toggle("dark");
+
+    const esOscuro = document.body.classList.contains("dark");
+
+    localStorage.setItem("temaOscuro", esOscuro);
+
+    btnTema.textContent = esOscuro ? "☀️ Modo claro" : "🌙 Modo Oscuro";
+
+}
+
+
+
 // Eventos
+
+btnTema.addEventListener("click", toggleTema);
 
 btnLimpiar.addEventListener("click", limpiarCompletadas);
 
