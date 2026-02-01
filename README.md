@@ -42,7 +42,7 @@ Aplicación web desarrollada en JavaScript puro que permite gestionar tareas dia
 ```
 todo-app/
 │
-├── todo.html
+├── index.html
 ├── script-todo.js
 ├── style-todo.css
 └── README.md
