@@ -1,8 +1,9 @@
-import { createTask } from "./services";
+import { createTaskModel } from "./model/taskModel.js";
+import { createTaskView } from "./view/taskView.js";
+import { createTaskController } from "./controller/taskController.js";
 
-async function run() {
-    await createTask("Modular architecture");
-}
+const model = createTaskModel();
+const view = createTaskView();
+const controller = createTaskController(model, view);
 
-run();
-
+controller.init();
